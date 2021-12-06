@@ -3,15 +3,20 @@ const express = require("express");
 const comments = require("../models/comments");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
 
     try{
-        const comments = await Comment.find();
+        const comments = await Comment.find(
+            { videoId: req.params.id }
+
+        );
         return res.send(comments); 
     }catch (ex){
         return res.status(500).send(`Internal Server Error:${ex}`);
     }
 });
+
+
 
 router.post("/", async (req, res) => {
     
@@ -86,7 +91,7 @@ router.put("/:id", async (req, res) => {
 
             return res.send(comments);
         
-    }catch(error){
+    }catch(ex){
         return res.status(500).send(`Internal Server Error:${ex}`);
     }
 })
