@@ -27,8 +27,17 @@ function validateComment(Comment){
     return schema.validate(Comment);;
 }
 
+function validateReply(Reply){
+    const schema = Joi.object({
+        replyBody: Joi.string().min(1).max(100).required(),
+    });
+    return schema.validate(Reply);;
+}
+
+
 module.exports = {
     Comment: Comment,
     Reply: Reply,
-    validateComment: validateComment
+    validateComment: validateComment,
+    validateReply: validateReply
 }
