@@ -3,6 +3,8 @@ const express = require("express");
 const comments = require("../models/comments");
 const router = express.Router();
 
+
+
 router.get("/:id", async (req, res) => {
 
     try{
